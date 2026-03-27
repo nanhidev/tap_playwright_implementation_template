@@ -1,24 +1,21 @@
-// playwright.config.js
 const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
-  testDir: './tests',
-  timeout: 30000,
+  testDir: './src/tests',
+  timeout: 60000, // Increase timeout as the app seems slow
 
-  retries: 1, // retry failed tests
+  retries: 0,
 
   use: {
-    headless: false,
+    headless: false, // Set to true if you don't want to see the browser window
     viewport: { width: 1280, height: 720 },
-
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    trace: 'retain-on-failure', // 🔥 very important
+    screenshot: 'on',
+    video: 'on',
+    trace: 'on',
   },
 
   reporter: [
-    ['list'], // console output
-    ['html', { open: 'never' }], // HTML report
-    ['json', { outputFile: 'test-results/results.json' }], // for API usage
+    ['list'],
+    ['html', { open: 'never' }],
   ],
 });
