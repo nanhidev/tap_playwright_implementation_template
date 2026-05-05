@@ -18,10 +18,8 @@ module.exports = defineConfig({
     ['html', { open: 'never' }]
   ],
 
-  globalSetup: require.resolve('./global-setup'),
-
   use: {
-    baseURL: process.env.BASE_URL || 'https://dev.engazewell.com',
+    baseURL: process.env.BASE_URL,
 
     headless: process.env.CI ? true : false,
 
@@ -36,8 +34,6 @@ module.exports = defineConfig({
 
     ignoreHTTPSErrors: true,
 
-    storageState: 'storageState.json',
-
     launchOptions: {
       slowMo: 0
     }
@@ -45,8 +41,7 @@ module.exports = defineConfig({
 
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit', use: { ...devices['Desktop Safari'] } }
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },  
   ],
 
   outputDir: 'test-results/',
